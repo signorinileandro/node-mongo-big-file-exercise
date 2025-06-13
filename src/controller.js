@@ -123,7 +123,8 @@ const upload = async (req, res) => {
 
 const list = async (_, res) => {
   try {
-    const data = await Records.find({}).limit(10).lean();
+    // Ordenar por ID descendente
+    const data = await Records.find({}).sort({ _id: -1 }).limit(10).lean();
 
     return res.status(200).json(data);
   } catch (err) {
